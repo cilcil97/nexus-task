@@ -1,0 +1,18 @@
+{{- if .Values.volumes.recreate }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    "helm.sh/resource-policy": keep
+  name: {{ .Values.volumes.name }}
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    type: local-path
+spec:
+  storageClassName: local-path
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+
+
